@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
     }
-
     private void initView() {
         mTv = (TextView) findViewById(R.id.tv);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1.0f);

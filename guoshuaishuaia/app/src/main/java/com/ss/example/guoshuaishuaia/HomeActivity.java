@@ -1,5 +1,6 @@
 package com.ss.example.guoshuaishuaia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,6 +13,8 @@ import com.ss.example.guoshuaishuaia.adapter.RlvJokeAdapter;
 import com.ss.example.guoshuaishuaia.bean.JokeBean;
 import com.ss.example.guoshuaishuaia.contract.JokeContract;
 import com.ss.example.guoshuaishuaia.presenter.JokePresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -44,8 +47,13 @@ public class HomeActivity extends AppCompatActivity implements JokeContract.View
         mRlv.setAdapter(mAdapter);
         mAdapter.setonItemClick(new RlvJokeAdapter.onItemClick() {
             @Override
-            public void onItem(JokeBean.ResultBean resultBean) {
-
+            public void onItem(List<JokeBean.ResultBean> list,int position) {
+                OnEventBus onEventBus = new OnEventBus();
+                onEventBus.mResultBeans=list;
+                onEventBus.position=position;
+                EventBus.getDefault().postSticky(onEventBus);
+                Intent intent = new Intent(HomeActivity.this, VpActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -53,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements JokeContract.View
     @Override
     public void onSuccess(List<JokeBean.ResultBean> resultBeans) {
         Log.d(TAG, "onSuccess: aaa"+resultBeans.toString());
+        //获取成功
         mAdapter.addData(resultBeans);
     }
 

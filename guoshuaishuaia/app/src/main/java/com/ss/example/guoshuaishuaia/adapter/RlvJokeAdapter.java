@@ -60,7 +60,7 @@ public class RlvJokeAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         int type = getItemViewType(i);
         final JokeBean.ResultBean bean = list.get(i);
         if (type == 0) {
@@ -95,7 +95,7 @@ public class RlvJokeAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 if (mItemClick != null) {
-                    mItemClick.onItem(bean);
+                    mItemClick.onItem(list,i);
                 }
             }
         });
@@ -166,7 +166,7 @@ public class RlvJokeAdapter extends RecyclerView.Adapter {
         }
     }
    public interface onItemClick{
-        void onItem(JokeBean.ResultBean resultBean);
+        void onItem(List<JokeBean.ResultBean> resultBean,int position);
     }
     public void  setonItemClick(onItemClick itemClick){
 

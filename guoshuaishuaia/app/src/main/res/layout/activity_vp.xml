@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:textSize="26sp"
-        android:layout_width="wrap_content"
+    tools:context=".VpActivity">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="欢迎来到北京积云教育"
-        android:id="@+id/tv"/>
-
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimary"/>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vp"/>
 </LinearLayout>
